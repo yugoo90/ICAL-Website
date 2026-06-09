@@ -26,7 +26,7 @@ export const Contact = () => {
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">Email</h3>
                 <p className="text-gray-700">
                   <a href="mailto:info@icalethbridge.ca" className="text-red-600 hover:underline">
-                    info@icalethbridge.ca
+                    igboculturalasslth@gmail.com
                   </a>
                 </p>
               </div>
@@ -38,7 +38,7 @@ export const Contact = () => {
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">Phone</h3>
                 <p className="text-gray-700">
                   <a href="tel:+1-403-000-0000" className="text-red-600 hover:underline">
-                    (403) 000-0000
+                    (403) 308-7650
                   </a>
                 </p>
               </div>
@@ -49,7 +49,7 @@ export const Contact = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">Location</h3>
                 <p className="text-gray-700">
-                  Lethbridge, AB
+                  863 Keystone Meadows West, Lethbridge, AB
                   <br />
                   Canada
                 </p>

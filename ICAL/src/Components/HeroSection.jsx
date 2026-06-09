@@ -28,3 +28,4 @@ export const HeroSection = () => {
     </section>
   );
 };
+

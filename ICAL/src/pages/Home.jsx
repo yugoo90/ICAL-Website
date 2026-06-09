@@ -1,4 +1,5 @@
 import { HeroSection } from "../Components/HeroSection";
+import { Content } from "../Components/ContentDisplay";
 
 export const Home = () => {
   return (
