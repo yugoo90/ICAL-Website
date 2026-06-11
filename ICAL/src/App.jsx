@@ -10,7 +10,7 @@ import { Gallery } from "./pages/Gallery"
 export default function App(){
   return (
     <BrowserRouter>
-      <div className='ICAL-web-app'>
+      <div className="ICAL-web-app min-h-screen flex flex-col">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

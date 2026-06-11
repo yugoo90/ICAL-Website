@@ -1,31 +1,42 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 function itemKey(img, index) {
   return String(img.id ?? img.url ?? index);
 }
 
 function GalleryImage({ img, index, onBroken }) {
-  const alt = img.title?.trim() ? img.title : `Gallery photo ${index + 1}`;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
-      className="overflow-hidden rounded-lg shadow-md bg-white"
+      className="ical-card overflow-hidden"
     >
       <img
         src={img.url}
-        alt={alt}
+        alt="Images from Igbo Day 2025!!"
         loading="lazy"
         referrerPolicy="no-referrer"
-        className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+        className="w-full h-48 object-cover hover:scale-110 transition-transform duration-300 cursor-pointer"
         onError={onBroken}
+        onClick={() => setIsOpen(true)}
       />
 
       {img.title ? (
-        <p className="text-sm text-gray-600 px-2 py-2 truncate" title={img.title}>
+        <p className="text-sm text-emerald-900/70 px-2 py-2 truncate" title={img.title}>
           {/* {img.title} */}
           "Images from Igbo Day 2025!!"
         </p>
       ) : null}
+
+      {isOpen && (
+        <div className="fixed inset-0 z-[60] bg-black bg-opacity-50 flex items-center justify-center p-4 overflow-hidden" onClick={() => setIsOpen(false)}>
+          <img 
+            src={img.url} 
+            alt="Gallery Image" 
+            className="max-w-full max-h-full object-contain" 
+            />
+        </div>
+      )}
     </div>
   );
 }
@@ -39,7 +50,7 @@ export function GalleryGrid({ images = [] }) {
 
   if (!images.length) {
     return (
-      <p className="text-center py-12 text-gray-500">No images available.</p>
+      <p className="text-center py-12 text-emerald-800/60">No images available.</p>
     );
   }
 
@@ -47,7 +58,7 @@ export function GalleryGrid({ images = [] }) {
 
   if (visibleCount === 0) {
     return (
-      <p className="text-center py-12 text-gray-500">
+      <p className="text-center py-12 text-emerald-800/60">
         Images could not be loaded. Check that URLs are valid HTTPS links.
       </p>
     );

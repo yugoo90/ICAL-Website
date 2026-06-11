@@ -5,6 +5,24 @@
     --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
     --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
     --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+    --animate-navbar-flow: navbar-flow 12s ease-in-out infinite;
+    --animate-accent-flow: accent-flow 6s linear infinite;
+    --animate-page-flow: page-flow 20s ease-in-out infinite;
+
+    @keyframes navbar-flow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    @keyframes accent-flow {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+
+    @keyframes page-flow {
+        0%, 100% { background-position: 0% 0%; }
+        50% { background-position: 100% 100%; }
+    }
 
     @keyframes fade-in {
         from {
@@ -15,5 +33,63 @@
             opacity: 1;
             transform: translateY(0);
         }
+    }
+}
+
+@layer components {
+    .ical-page-flow {
+        background: linear-gradient(
+            135deg,
+            #ecfdf5 0%,
+            #fffbeb 35%,
+            #fff1f2 65%,
+            #f0fdf4 100%
+        );
+        background-size: 200% 200%;
+        animation: var(--animate-page-flow);
+    }
+
+    .ical-texture {
+        opacity: 0.035;
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 8px,
+            rgba(6, 78, 59, 0.5) 8px,
+            rgba(6, 78, 59, 0.5) 9px
+        );
+    }
+
+    .ical-accent-bar {
+        height: 0.25rem;
+        width: 6rem;
+        border-radius: 9999px;
+        background: linear-gradient(to right, #34d399, #fcd34d, #f87171);
+        background-size: 200% 100%;
+        animation: var(--animate-accent-flow);
+    }
+
+    .ical-card {
+        background-color: rgb(255 255 255 / 0.72);
+        backdrop-filter: blur(4px);
+        border-radius: 0.75rem;
+        border: 1px solid rgb(252 211 77 / 0.35);
+        box-shadow: 0 1px 3px 0 rgb(6 78 59 / 0.06), 0 1px 2px -1px rgb(6 78 59 / 0.06);
+    }
+
+    .ical-btn {
+        background: linear-gradient(to right, #047857, #b45309, #b91c1c);
+        background-size: 200% 100%;
+        animation: var(--animate-accent-flow);
+        color: white;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        padding: 0.75rem 2rem;
+        transition: opacity 0.3s, transform 0.2s;
+    }
+
+    .ical-btn:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
     }
 }
