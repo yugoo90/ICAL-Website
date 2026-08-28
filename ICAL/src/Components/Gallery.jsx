@@ -4,7 +4,7 @@ function itemKey(img, index) {
   return String(img.id ?? img.url ?? index);
 }
 
-function GalleryImage({ img, index, onBroken }) {
+function GalleryImage({ img, onBroken }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -75,7 +75,6 @@ export function GalleryGrid({ images = [] }) {
           <GalleryImage
             key={key}
             img={img}
-            index={index}
             onBroken={() => markBroken(key)}
           />
         );
