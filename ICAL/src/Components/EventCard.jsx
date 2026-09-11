@@ -30,7 +30,8 @@ export function EventCard({event}) {
                     src={flyerUrl}
                     alt={event.flyerTitle || `${event.title} flyer`}
                     loading="lazy"
-                    className="h-64 w-full obhect-cover"
+                    referrerPolicy="no-referrer"
+                    className="h-auto w-full object-contain"
                 />
             )}
 
@@ -38,7 +39,7 @@ export function EventCard({event}) {
                 <h3 className="text-2xl font-bold text-emerald-950">
                     {event.title}
                 </h3>
-                <div className="space-y-2 text-emerald-900/75"> 
+                <div className="space-y-2 text-emerald-900/75">
                     <p>
                         <strong>Starts:</strong>{" "}
                         {formatDate(event.startDate, event.isAllDay)}

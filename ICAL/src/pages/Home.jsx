@@ -102,5 +102,3 @@ export const Home = () => {
     </div>
   );
 };
-
-

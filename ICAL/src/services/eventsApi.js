@@ -40,7 +40,7 @@ function getDriveFileId(url) {
 function normalizeEvent(event) {
     const fileId = getDriveFileId(event.flyerFileUrl);
     return {
-        ...event, 
+        ...event,
         flyerImageUrl: fileId
             ? `https://lh3.googleusercontent.com/d/${fileId}=w1200`
             : null,
