@@ -1,4 +1,4 @@
-import { GalleryGrid } from "../Components/Gallery";
+import { GallerySlider } from "../Components/Gallery";
 import { PageHeader, SectionBackground } from "../Components/SectionBackground";
 import { useEffect, useState } from "react";
 import {getGalleryImages} from "../services/galleryApi"
@@ -63,7 +63,7 @@ export const Gallery = () => {
 
         {error && <p className="text-center text-red-700">{error}</p>}
 
-        {!loading && !error && <GalleryGrid images={images} />}
+        {!loading && !error && <GallerySlider images={images} />}
 
       </SectionBackground>
     </main>
