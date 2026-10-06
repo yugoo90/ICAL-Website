@@ -1,23 +1,40 @@
 function formatDate(dateString, isAllDay) {
+    if(!dateString) return "Date unavailable";
+
     const date = new Date(dateString);
+    if(Number.isNaN(date.getTime())) return "Date unavailable";
+
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: isAllDay ? "UTC" :  "America/Edmonton",
+    };
 
     if(isAllDay) {
-        return date.toLocaleDateString(undefined, {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
+        return date.toLocaleDateString("en-CA", options);
     }
 
-    return date.toLocaleDateString(undefined, {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
+    return date.toLocaleString("en-CA", {
+        ...options,
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short",
     });
+}
+
+function formatEndDate(dateString, isAllDay){
+    if(!isAllDay) return formatDate(dateString, false);
+    if(!dateString) return "Date unavailable";
+
+    const date = new Date(dateString);
+    if(Number.isNaN(date.getTime())) return "Date unavailable";
+
+    date.setUTCDate(date.getUTCDate() - 1);
+
+    return formatDate(date.toISOString().slice(0, 10), true);
+
 }
 
 export function EventCard({event}) {
@@ -46,7 +63,7 @@ export function EventCard({event}) {
                     </p>
                     <p>
                         <strong>Ends:</strong>{" "}
-                        {formatDate(event.endDate, event.isAllDay)}
+                        {formatEndDate(event.endDate, event.isAllDay)}
                     </p>
 
                     {event.location && (

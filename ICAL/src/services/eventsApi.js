@@ -13,8 +13,16 @@ export async function getEvents() {
     }
 
     const data = await response.json();
-
-    if(!Array.isArray(data)) {
+    if (
+        !Array.isArray(data) ||
+        data.some(event =>
+            !event ||
+            typeof event !== "object" ||
+            Array.isArray(event) ||
+            typeof event.id !== "string" ||
+            !event.id.trim()
+        )
+    ) {
         throw new Error("Invalid events data.");
     }
 
@@ -22,19 +30,18 @@ export async function getEvents() {
 }
 
 function getDriveFileId(url) {
-    if(!url) {
+    if(typeof url !== "string" || !url.trim()) return null;
+
+    try {
+        const parsedUrl = new URL(url);
+        const queryId = parsedUrl.searchParams.get("id");
+        if(queryId) return queryId;
+
+        const pathMatch = parsedUrl.pathname.match(/\/d\/([^/]+)/);
+        return pathMatch?.[1] ?? null;
+    } catch {
         return null;
     }
-
-    const queryId = new URL(url).searchParams.get('id');
-
-    if(queryId) {
-        return queryId;
-    }
-
-    const pathMatch = url.match(/\/d\/([^/]+)/);
-
-    return pathMatch?.[1] ?? null;
 }
 
 function normalizeEvent(event) {
